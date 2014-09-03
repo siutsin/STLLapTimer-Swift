@@ -1,0 +1,22 @@
+PODS:
+  - GPUImage (0.1.5)
+  - libextobjc/EXTScope (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4)
+  - STLDebug (0.0.1)
+
+DEPENDENCIES:
+  - GPUImage (~> 0.1)
+  - libextobjc/EXTScope (~> 0.4)
+  - STLDebug (from `https://github.com/siutsin/STLDebug.git`)
+
+EXTERNAL SOURCES:
+  STLDebug:
+    :git: https://github.com/siutsin/STLDebug.git
+
+SPEC CHECKSUMS:
+  GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
+  libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
+  STLDebug: 1d800d7e2dcde9f74dffebf7ebda0668c54ba102
+
+COCOAPODS: 0.33.1
