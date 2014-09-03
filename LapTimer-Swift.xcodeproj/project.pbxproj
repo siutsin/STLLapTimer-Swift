@@ -39,6 +39,7 @@
 		E00C0C0419B710E2006F178F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E00C0C0519B710EC006F178F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E00C0C0619B7121D006F178F /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		E00C0C0719B7145E006F178F /* LapTimer-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LapTimer-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.xcconfig"; path = "Pods/Pods-LapTimer-Swift.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +108,7 @@
 		E00C0BE419B70FC1006F178F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E00C0C0719B7145E006F178F /* LapTimer-Swift-Bridging-Header.h */,
 				E00C0BE519B70FC1006F178F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -395,9 +397,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "LapTimer-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LapTimer-Swift/LapTimer-Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -407,9 +412,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "LapTimer-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LapTimer-Swift/LapTimer-Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};
