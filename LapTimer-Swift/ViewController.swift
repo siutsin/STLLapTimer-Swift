@@ -41,7 +41,7 @@ class ViewController: UITableViewController
     
     override func viewDidDisappear(animated: Bool)
     {
-        self.videoCamera.stopCameraCapture();
+        self.videoCamera.stopCameraCapture()
         self.timer.invalidate()
         super.viewDidDisappear(animated)
     }
@@ -82,11 +82,21 @@ class ViewController: UITableViewController
     
     // MARK: - Lap Timer
     
+    @IBAction func didClickReset(sender: AnyObject)
+    {
+        self.lapTimeArray.removeAll(keepCapacity: false)
+        self.tableView.reloadData()
+        self.cooldown = false
+        self.lapCounter = 0
+        self.startTime = nil
+        self.lap()
+    }
+    
     func lap()
     {
         if (self.cooldown) { return }
         
-        self.cooldown = true;
+        self.cooldown = true
         Utility.delay(self.cooldownPeriod, closure: {
             [unowned self]
             () -> () in
@@ -99,7 +109,7 @@ class ViewController: UITableViewController
         }
         else
         {
-            self.lapCounter++;
+            self.lapCounter++
             let interval = NSDate().timeIntervalSinceDate(self.startTime!)
             self.startTime = NSDate()
             self.lapTimeArray.insert(self.stringFromTimeInterval(interval), atIndex: 0)
