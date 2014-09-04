@@ -2,7 +2,7 @@
 
 App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspired by [Pimentoso's project](https://github.com/Pimentoso/AndroidLapTimer).
 
-[Objective-c Version](https://github.com/siutsin/STLLapTimer)
+[Objective-C Version](https://github.com/siutsin/STLLapTimer)
 
 ## Demo Video
 
