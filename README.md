@@ -5,16 +5,11 @@ App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspire
 ## Demo Video
 
 ![alt text](https://db.tt/2rGabl8t "Demo")
-
-## Warning
-
-Please open the project with Xcode 6 or above.
+[![Youtube](http://img.youtube.com/vi/jmIg5q2mGIs/0.jpg)](http://www.youtube.com/watch?v=jmIg5q2mGIs)
 
 ## Libraries
 
 [GPUImage](https://github.com/BradLarson/GPUImage)
-
-[libextobjc](https://github.com/jspahrsummers/libextobjc)
 
 ## Author
 

@@ -13,6 +13,7 @@
 		E00C0BEC19B70FC1006F178F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E00C0BEA19B70FC1006F178F /* Main.storyboard */; };
 		E00C0BEE19B70FC1006F178F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E00C0BED19B70FC1006F178F /* Images.xcassets */; };
 		E00C0BFA19B70FC1006F178F /* LapTimer_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C0BF919B70FC1006F178F /* LapTimer_SwiftTests.swift */; };
+		E0F935CB19B8226900ABBEB7 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F935CA19B8226900ABBEB7 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		E00C0C0519B710EC006F178F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E00C0C0619B7121D006F178F /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E00C0C0719B7145E006F178F /* LapTimer-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LapTimer-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		E0F935CA19B8226900ABBEB7 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.xcconfig"; path = "Pods/Pods-LapTimer-Swift.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 			children = (
 				E00C0BE619B70FC1006F178F /* AppDelegate.swift */,
 				E00C0BE819B70FC1006F178F /* ViewController.swift */,
+				E0F935CA19B8226900ABBEB7 /* Utility.swift */,
 				E00C0BEA19B70FC1006F178F /* Main.storyboard */,
 				E00C0BED19B70FC1006F178F /* Images.xcassets */,
 				E00C0BE419B70FC1006F178F /* Supporting Files */,
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0F935CB19B8226900ABBEB7 /* Utility.swift in Sources */,
 				E00C0BE919B70FC1006F178F /* ViewController.swift in Sources */,
 				E00C0BE719B70FC1006F178F /* AppDelegate.swift in Sources */,
 			);

@@ -18,7 +18,7 @@ class ViewController: UITableViewController
     
     // MARK: - Variables / Constants
     
-    let sensitivity = 0.2
+    let sensitivity: CGFloat = 0.1
     let cooldownPeriod = 2.0
     
     var startTime: NSDate?
@@ -32,50 +32,113 @@ class ViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         self.videoCamera.startCameraCapture()
+    }
+    
+    override func viewDidDisappear(animated: Bool)
+    {
+        self.videoCamera.stopCameraCapture();
+        self.timer?.invalidate()
+        super.viewDidDisappear(animated)
     }
 
     // MARK: - Motion Detector
     
     lazy var videoCamera: GPUImageVideoCamera =
     {
-        var tempVideoCamera = GPUImageVideoCamera(sessionPreset: (AVCaptureSessionPreset352x288 as String), cameraPosition: AVCaptureDevicePosition.Back)
-        tempVideoCamera.outputImageOrientation = UIApplication.sharedApplication().statusBarOrientation
+        var tempVideoCamera = GPUImageVideoCamera(sessionPreset: (AVCaptureSessionPreset352x288 as String), cameraPosition: .Back)
+        tempVideoCamera.outputImageOrientation = .Portrait
         var filter = GPUImageMotionDetector()
-        filter.motionDetectionBlock = { (CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) -> Void in
-            if (motionIntensity > 0.2) {
-                self.lap()
-            }
+        filter.motionDetectionBlock = {
+            [unowned self]
+            (CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) -> Void in
+            if (motionIntensity > self.sensitivity) { self.lap() }
         }
         tempVideoCamera.addTarget(filter)
         tempVideoCamera.addTarget(self.filterView)
         return tempVideoCamera
     }()
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    {
+        // FIXME: Orientation bug?
+        switch UIDevice.currentDevice().orientation {
+        case UIDeviceOrientation.Portrait:
+            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.Portrait
+        case UIDeviceOrientation.PortraitUpsideDown:
+            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.PortraitUpsideDown
+        case UIDeviceOrientation.LandscapeLeft:
+            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.LandscapeRight
+        case UIDeviceOrientation.LandscapeRight:
+            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.LandscapeLeft
+        default:
+            NSLog("Orientation error")
+        }
+    }
+    
     // MARK: - Lap Timer
     
-    func lap() {
-        //
+    func lap()
+    {
+        if (self.cooldown) { return }
+        
+        self.cooldown = true;
+        Utility.delay(self.cooldownPeriod, closure: {
+            [unowned self]
+            () -> () in
+            self.cooldown = false
+        })
+        
+        if (self.startTime == nil)
+        {
+            self.startTime = NSDate()
+        }
+        else
+        {
+            self.lapCounter++;
+            let interval = NSDate().timeIntervalSinceDate(self.startTime!)
+            self.startTime = NSDate()
+            self.lapTimeArray.insert(self.stringFromTimeInterval(interval), atIndex: 0)
+            dispatch_async(dispatch_get_main_queue(), {
+                [unowned self]
+                () -> Void in
+                let indexPath = NSIndexPath(forRow:0, inSection:0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            })
+        }
+    }
+    
+    func stringFromTimeInterval(interval: NSTimeInterval) -> String
+    {
+        let timeUnits = self.timeUnitsForInterval(interval)
+        let minutes = NSString(format:"%02d", timeUnits["minutes"]!)
+        let seconds = NSString(format:"%02d", timeUnits["seconds"]!)
+        let centiseconds = NSString(format:"%02d", timeUnits["centiseconds"]!)
+        return "Lap: \(self.lapCounter) Time: \(minutes):\(seconds):\(centiseconds)"
+    }
+    
+    func timeUnitsForInterval(interval: NSTimeInterval) -> Dictionary<String, Int>
+    {
+        let ti: Double = Double(interval)
+        let minutes: Int = (Int(ti) / 60) % 60
+        let seconds: Int = Int(ti) % 60
+        let centiseconds: Int = Int(round(fmod(ti, 1) * 100))
+        var timeUnits: [String: Int] = ["minutes": minutes, "seconds": seconds, "centiseconds": centiseconds]
+        return timeUnits
     }
     
     // MARK: - UITableView
     
-    override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return self.lapTimeArray.count
     }
     
-//    override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
-//        var cell = tableView?.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell
-//        cell!.textLabel.text = self.lapTimeArray.count > 0 ? self.lapTimeArray[indexPath.row] : ""
-//        return cell
-//    }
-    
-//    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-//        var cell = tableView?.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell
-//        cell!.textLabel.text = self.lapTimeArray.count > 0 ? self.lapTimeArray[indexPath.row] : ""
-//        return cell
-//    }
-
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell
+        cell!.textLabel!.text = self.lapTimeArray.count > 0 ? self.lapTimeArray[indexPath.row] : ""
+        return cell!
+    }
 }
 
