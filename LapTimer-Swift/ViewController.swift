@@ -22,7 +22,6 @@ class ViewController: UITableViewController
     let cooldownPeriod = 2.0
     
     var startTime: NSDate?
-    var timer: NSTimer?
     var cooldown = false
     var lapCounter: NSInteger = 0
     var lapTimeArray = [String]()
@@ -35,10 +34,15 @@ class ViewController: UITableViewController
         self.videoCamera.startCameraCapture()
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        self.timer.fire()
+    }
+    
     override func viewDidDisappear(animated: Bool)
     {
         self.videoCamera.stopCameraCapture();
-        self.timer?.invalidate()
+        self.timer.invalidate()
         super.viewDidDisappear(animated)
     }
 
@@ -106,6 +110,26 @@ class ViewController: UITableViewController
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             })
         }
+    }
+    
+    lazy var timer: NSTimer = {
+        var tempTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+        return tempTimer
+    }()
+
+    func updateTimer()
+    {
+        let interval = NSDate().timeIntervalSinceDate(self.startTime!)
+        let timeUnits = self.timeUnitsForInterval(interval)
+        let minutes = NSString(format:"%02d", timeUnits["minutes"]!)
+        let seconds = NSString(format:"%02d", timeUnits["seconds"]!)
+        let centiseconds = NSString(format:"%02d", timeUnits["centiseconds"]!)
+        let titleString = "\(minutes):\(seconds):\(centiseconds)"
+        dispatch_async(dispatch_get_main_queue(), {
+            [unowned self]
+            () -> Void in
+            self.titleTimerLabel.text = titleString
+        })
     }
     
     func stringFromTimeInterval(interval: NSTimeInterval) -> String
