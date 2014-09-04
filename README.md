@@ -6,7 +6,6 @@ App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspire
 
 ## Demo Video
 
-![alt text](https://db.tt/2rGabl8t "Demo")
 [![Youtube](http://img.youtube.com/vi/jmIg5q2mGIs/0.jpg)](http://www.youtube.com/watch?v=jmIg5q2mGIs)
 
 ## Libraries
