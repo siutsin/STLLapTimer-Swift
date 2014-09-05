@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class ViewController: UITableViewController
 {
@@ -53,10 +52,14 @@ class ViewController: UITableViewController
         var tempVideoCamera = GPUImageVideoCamera(sessionPreset: (AVCaptureSessionPreset352x288 as String), cameraPosition: .Back)
         tempVideoCamera.outputImageOrientation = .Portrait
         var filter = GPUImageMotionDetector()
-        filter.motionDetectionBlock = {
+        filter.motionDetectionBlock =
+        {
             [unowned self]
             (CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) -> Void in
-            if (motionIntensity > self.sensitivity) { self.lap() }
+            if (motionIntensity > self.sensitivity)
+            {
+                self.lap()
+            }
         }
         tempVideoCamera.addTarget(filter)
         tempVideoCamera.addTarget(self.filterView)
@@ -66,7 +69,8 @@ class ViewController: UITableViewController
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
     {
         // FIXME: Orientation bug?
-        switch UIDevice.currentDevice().orientation {
+        switch UIDevice.currentDevice().orientation
+        {
         case UIDeviceOrientation.Portrait:
             self.videoCamera.outputImageOrientation = UIInterfaceOrientation.Portrait
         case UIDeviceOrientation.PortraitUpsideDown:
@@ -97,7 +101,8 @@ class ViewController: UITableViewController
         if (self.cooldown) { return }
         
         self.cooldown = true
-        Utility.delay(self.cooldownPeriod, closure: {
+        Utility.delay(self.cooldownPeriod, closure:
+        {
             [unowned self]
             () -> () in
             self.cooldown = false
@@ -113,7 +118,8 @@ class ViewController: UITableViewController
             let interval = NSDate().timeIntervalSinceDate(self.startTime!)
             self.startTime = NSDate()
             self.lapTimeArray.insert(self.stringFromTimeInterval(interval), atIndex: 0)
-            dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue(),
+            {
                 [unowned self]
                 () -> Void in
                 let indexPath = NSIndexPath(forRow:0, inSection:0)
@@ -122,7 +128,8 @@ class ViewController: UITableViewController
         }
     }
     
-    lazy var timer: NSTimer = {
+    lazy var timer: NSTimer =
+    {
         var tempTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
         return tempTimer
     }()
@@ -135,7 +142,8 @@ class ViewController: UITableViewController
         let seconds = NSString(format:"%02d", timeUnits["seconds"]!)
         let centiseconds = NSString(format:"%02d", timeUnits["centiseconds"]!)
         let titleString = "\(minutes):\(seconds):\(centiseconds)"
-        dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(dispatch_get_main_queue(),
+        {
             [unowned self]
             () -> Void in
             self.titleTimerLabel.text = titleString
