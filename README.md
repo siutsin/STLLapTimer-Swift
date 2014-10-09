@@ -1,4 +1,5 @@
 # STLLapTimer-Swift
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/siutsin/STLLapTimer-Swift?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspired by [Pimentoso's project](https://github.com/Pimentoso/AndroidLapTimer).
 
