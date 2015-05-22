@@ -27,7 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AF8F8812072CD0F4BE7A513 /* Pods-LapTimer-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LapTimer-Swift/Pods-LapTimer-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		0B921383104045DA8A654AC1 /* libPods-LapTimer-Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LapTimer-Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74AD93D49EEC6A6C92BB00D /* Pods-LapTimer-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LapTimer-Swift/Pods-LapTimer-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		E00C0BE119B70FC1006F178F /* LapTimer-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LapTimer-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E00C0BE519B70FC1006F178F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E00C0BE619B70FC1006F178F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +44,6 @@
 		E00C0C0619B7121D006F178F /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E00C0C0719B7145E006F178F /* LapTimer-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LapTimer-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0F935CA19B8226900ABBEB7 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.xcconfig"; path = "Pods/Pods-LapTimer-Swift.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0997D8B0E87906FD1A67321D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C74AD93D49EEC6A6C92BB00D /* Pods-LapTimer-Swift.debug.xcconfig */,
+				0AF8F8812072CD0F4BE7A513 /* Pods-LapTimer-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		71B6C6EE78094C048FF8DF44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,7 +92,7 @@
 				E00C0BF619B70FC1006F178F /* LapTimer-SwiftTests */,
 				71B6C6EE78094C048FF8DF44 /* Frameworks */,
 				E00C0BE219B70FC1006F178F /* Products */,
-				F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */,
+				0997D8B0E87906FD1A67321D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,7 +269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-LapTimer-Swift-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LapTimer-Swift/Pods-LapTimer-Swift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E00C0C0319B710A4006F178F /* ShellScript */ = {
@@ -397,7 +407,7 @@
 		};
 		E00C0BFE19B70FC1006F178F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */;
+			baseConfigurationReference = C74AD93D49EEC6A6C92BB00D /* Pods-LapTimer-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -412,7 +422,7 @@
 		};
 		E00C0BFF19B70FC1006F178F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7204DB73E5B44918B847A44 /* Pods-LapTimer-Swift.xcconfig */;
+			baseConfigurationReference = 0AF8F8812072CD0F4BE7A513 /* Pods-LapTimer-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
