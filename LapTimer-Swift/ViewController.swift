@@ -20,7 +20,7 @@ class ViewController: UITableViewController
     let sensitivity: CGFloat = 0.1
     let cooldownPeriod = 2.0
     
-    var startTime: NSDate?
+    var startTime: NSDate! = NSDate()
     var cooldown = false
     var lapCounter: NSInteger = 0
     var lapTimeArray = [String]()
@@ -49,7 +49,7 @@ class ViewController: UITableViewController
     
     lazy var videoCamera: GPUImageVideoCamera =
     {
-        var tempVideoCamera = GPUImageVideoCamera(sessionPreset: (AVCaptureSessionPreset352x288 as String), cameraPosition: .Back)
+        var tempVideoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset352x288, cameraPosition: .Back)
         tempVideoCamera.outputImageOrientation = .Portrait
         var filter = GPUImageMotionDetector()
         filter.motionDetectionBlock =
