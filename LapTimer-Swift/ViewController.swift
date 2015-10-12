@@ -30,7 +30,9 @@ class ViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.videoCamera.startCameraCapture()
+        if let camera = self.videoCamera {
+            camera.startCameraCapture()
+        }
     }
     
     override func viewDidAppear(animated: Bool)
@@ -40,47 +42,54 @@ class ViewController: UITableViewController
     
     override func viewDidDisappear(animated: Bool)
     {
-        self.videoCamera.stopCameraCapture()
+        if let camera = self.videoCamera {
+            camera.stopCameraCapture()
+        }
         self.timer.invalidate()
         super.viewDidDisappear(animated)
     }
 
     // MARK: - Motion Detector
     
-    lazy var videoCamera: GPUImageVideoCamera =
+    lazy var videoCamera: GPUImageVideoCamera? =
     {
-        var tempVideoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset352x288, cameraPosition: .Back)
-        tempVideoCamera.outputImageOrientation = .Portrait
-        var filter = GPUImageMotionDetector()
-        filter.motionDetectionBlock =
-        {
-            [unowned self]
-            (CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) -> Void in
-            if (motionIntensity > self.sensitivity)
-            {
-                self.lap()
+        // Simulator will return nil
+        if let tempVideoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset352x288, cameraPosition: .Back) {
+            tempVideoCamera.outputImageOrientation = .Portrait
+            var filter = GPUImageMotionDetector()
+            filter.motionDetectionBlock =
+                {
+                    [unowned self]
+                    (CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) -> Void in
+                    if (motionIntensity > self.sensitivity)
+                    {
+                        self.lap()
+                    }
             }
+            tempVideoCamera.addTarget(filter)
+            tempVideoCamera.addTarget(self.filterView)
+            return tempVideoCamera
         }
-        tempVideoCamera.addTarget(filter)
-        tempVideoCamera.addTarget(self.filterView)
-        return tempVideoCamera
+        return nil
     }()
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
     {
-        // FIXME: Orientation bug?
-        switch UIDevice.currentDevice().orientation
-        {
-        case UIDeviceOrientation.Portrait:
-            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.Portrait
-        case UIDeviceOrientation.PortraitUpsideDown:
-            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.PortraitUpsideDown
-        case UIDeviceOrientation.LandscapeLeft:
-            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.LandscapeRight
-        case UIDeviceOrientation.LandscapeRight:
-            self.videoCamera.outputImageOrientation = UIInterfaceOrientation.LandscapeLeft
-        default:
-            NSLog("Orientation error")
+        if let camera = self.videoCamera {
+            // FIXME: Orientation bug?
+            switch UIDevice.currentDevice().orientation
+            {
+            case UIDeviceOrientation.Portrait:
+                camera.outputImageOrientation = UIInterfaceOrientation.Portrait
+            case UIDeviceOrientation.PortraitUpsideDown:
+                camera.outputImageOrientation = UIInterfaceOrientation.PortraitUpsideDown
+            case UIDeviceOrientation.LandscapeLeft:
+                camera.outputImageOrientation = UIInterfaceOrientation.LandscapeRight
+            case UIDeviceOrientation.LandscapeRight:
+                camera.outputImageOrientation = UIInterfaceOrientation.LandscapeLeft
+            default:
+                NSLog("Orientation error")
+            }
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		939CD05742B549ED883F550F /* libPods-LapTimer-Swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B921383104045DA8A654AC1 /* libPods-LapTimer-Swift.a */; };
+		E00287A31BCB7E6400E8E631 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = E00287A21BCB7E6400E8E631 /* .travis.yml */; settings = {ASSET_TAGS = (); }; };
 		E00C0BE719B70FC1006F178F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C0BE619B70FC1006F178F /* AppDelegate.swift */; };
 		E00C0BE919B70FC1006F178F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C0BE819B70FC1006F178F /* ViewController.swift */; };
 		E00C0BEC19B70FC1006F178F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E00C0BEA19B70FC1006F178F /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		0AF8F8812072CD0F4BE7A513 /* Pods-LapTimer-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LapTimer-Swift/Pods-LapTimer-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		0B921383104045DA8A654AC1 /* libPods-LapTimer-Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LapTimer-Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74AD93D49EEC6A6C92BB00D /* Pods-LapTimer-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LapTimer-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LapTimer-Swift/Pods-LapTimer-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		E00287A21BCB7E6400E8E631 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		E00C0BE119B70FC1006F178F /* LapTimer-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LapTimer-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E00C0BE519B70FC1006F178F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E00C0BE619B70FC1006F178F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		E00C0BD819B70FC1006F178F = {
 			isa = PBXGroup;
 			children = (
+				E00287A21BCB7E6400E8E631 /* .travis.yml */,
 				E00C0C0419B710E2006F178F /* LICENSE */,
 				E00C0C0519B710EC006F178F /* README.md */,
 				E00C0C0619B7121D006F178F /* Playground.playground */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E00287A31BCB7E6400E8E631 /* .travis.yml in Resources */,
 				E00C0BEC19B70FC1006F178F /* Main.storyboard in Resources */,
 				E00C0BEE19B70FC1006F178F /* Images.xcassets in Resources */,
 			);
@@ -466,10 +470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -486,10 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "LapTimer-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.siutsin.$(PRODUCT_NAME:rfc1034identifier)";
