@@ -165,7 +165,7 @@ class ViewController: UITableViewController
         let minutes: Int = (Int(ti) / 60) % 60
         let seconds: Int = Int(ti) % 60
         let centiseconds: Int = Int(round(fmod(ti, 1) * 100))
-        var timeUnits: [String: Int] = ["minutes": minutes, "seconds": seconds, "centiseconds": centiseconds]
+        let timeUnits: [String: Int] = ["minutes": minutes, "seconds": seconds, "centiseconds": centiseconds]
         return timeUnits
     }
     
@@ -178,7 +178,7 @@ class ViewController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell!
         cell!.textLabel!.text = self.lapTimeArray.count > 0 ? self.lapTimeArray[indexPath.row] : ""
         return cell!
     }
