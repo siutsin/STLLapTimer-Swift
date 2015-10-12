@@ -1,3 +1,6 @@
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Build Status](https://travis-ci.org/siutsin/STLLapTimer-Swift.svg?branch=master)](https://travis-ci.org/siutsin/STLLapTimer-Swift)
+
 # STLLapTimer-Swift
 
 App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspired by [Pimentoso's project](https://github.com/Pimentoso/AndroidLapTimer).
