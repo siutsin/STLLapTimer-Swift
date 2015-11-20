@@ -22,3 +22,6 @@ App for tracking mini4WD/slotcar lap times using an iPhone/iPad's camera inspire
 ## License
 
 STLDebug is available under the [MIT license](http://siutsin.mit-license.org). See the LICENSE file for more info.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/siutsin/stllaptimer-swift/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
